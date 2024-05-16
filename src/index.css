@@ -55,6 +55,11 @@ input:focus {
   background-color: #fff;
 }
 
+li{
+  list-style-type: none;
+
+}
+
 .cta:link,
 .cta:visited {
   display: inline-block;
