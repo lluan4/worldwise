@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styles from "./CityItem.module.css";
 import { Link } from "react-router-dom";
 import { useCities } from "../contexts/CitiesContext";
+import { useState } from "react";
 
 CityItem.propTypes = {
   city: PropTypes.object,
@@ -18,6 +19,7 @@ const formatDate = (date) =>
 function CityItem({ city }) {
   const { currentCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
+
   return (
     <li>
       <Link

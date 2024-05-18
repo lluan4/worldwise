@@ -24,8 +24,13 @@
 .emoji {
   font-size: 2.6rem;
   line-height: 1;
-}
 
+}
+.emoji img{
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
 .name {
   font-size: 1.7rem;
   font-weight: 600;
