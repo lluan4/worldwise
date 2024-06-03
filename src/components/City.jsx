@@ -20,7 +20,7 @@ function City() {
   useEffect(() => {
     _getCity(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, _getCity]);
 
   const { cityName, emoji, date, notes } = currentCity;
   if (isLoading) return <Spinner />;

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import PropTypes from "prop-types";
+import { useCallback } from "react";
 
 const BASE_URL = "http://localhost:3001";
 const CitiesContext = createContext();
@@ -69,18 +70,21 @@ function CitiesProvider({ children }) {
     })();
   }, []);
 
-  async function _getCity(id) {
-    if (Number(id) === currentCity.id) return;
-    dispatch({ type: "loading" });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch (error) {
-      alert("Failed to get city");
-      dispatch({ type: "rejected", payload: "Failed to get city" });
-    }
-  }
+  const _getCity = useCallback(
+    async function _getCity(id) {
+      if (Number(id) === currentCity.id) return;
+      dispatch({ type: "loading" });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch (error) {
+        alert("Failed to get city");
+        dispatch({ type: "rejected", payload: "Failed to get city" });
+      }
+    },
+    [currentCity.id]
+  );
 
   async function _createCity(newCity) {
     dispatch({ type: "loading" });
